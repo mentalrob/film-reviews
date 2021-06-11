@@ -9,4 +9,9 @@ class Film extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function comment()
+    {
+        return $this->morphOne(Comment::class, 'commentable');
+    }
 }

@@ -32,6 +32,7 @@ import Toolbar from '../Components/Toolbar.vue'
 import { StarIcon } from 'vue-feather-icons'
 
 export default {
+    props: ['films'],
     components: {
         Toolbar,
         StarIcon
