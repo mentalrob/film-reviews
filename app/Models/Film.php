@@ -14,4 +14,9 @@ class Film extends Model
     {
         return $this->morphOne(Comment::class, 'commentable');
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

@@ -16,7 +16,12 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', [FilmsController::class, 'index']);
+Route::get('/', [FilmsController::class, 'index'])->name('home');
+Route::middleware(['auth:sanctum', 'verified', 'adminOnly'])->name("admin.")->prefix("admin")->group(function () {
+    Route::get('/', function () {
+        return "admin";
+    });
+});
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
