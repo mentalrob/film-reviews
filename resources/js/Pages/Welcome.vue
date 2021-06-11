@@ -31,10 +31,10 @@
 import Toolbar from '../Components/Toolbar.vue'
 import { StarIcon } from 'vue-feather-icons'
 
-    export default {
-        components: {
-            Toolbar,
-            StarIcon
-        },
-    }
+export default {
+    components: {
+        Toolbar,
+        StarIcon
+    },
+}
 </script>
