@@ -14,9 +14,9 @@ class Film extends Model
         'review_point'
     ];
 
-    public function comment()
+    public function comments()
     {
-        return $this->morphOne(Comment::class, 'commentable');
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     public function reviews()

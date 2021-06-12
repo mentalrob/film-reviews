@@ -26,7 +26,11 @@ Route::middleware(['auth:sanctum', 'verified', 'adminOnly'])->name("admin.")->pr
 });
 
 Route::get('/', [FilmsController::class, 'index'])->name('home');
-Route::middleware(['auth:sanctum', 'verified'])->get('/review/{film}', [FilmsController::class, 'review'])->name('film.review');
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('/review/{film}', [FilmsController::class, 'review'])->name('film.review');
+    Route::post('/review/{film}', [FilmsController::class, 'rate'])->name('film.rate');
+    Route::post('/comment/{film}', [FilmsController::class, 'comment'])->name('film.comment');
+});
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
