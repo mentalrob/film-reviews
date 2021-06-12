@@ -26,7 +26,7 @@ class FilmFactory extends Factory
             'actors' => $this->faker->name() . " " . $this->faker->lastName() . " / " . $this->faker->name() . " " . $this->faker->lastName(),
             'director' => $this->faker->name() . " " . $this->faker->lastName(),
             'title' => $this->faker->jobTitle,
-            'genre' => implode(",", $this->faker->randomElements(["Action", "Comedy", "Sci-Fi", "Romantic", "Horror", "Crime"])),
+            'genre' => implode(",", $this->faker->randomElements(["Action", "Comedy", "Sci-Fi", "Romantic", "Horror", "Crime"], rand(1, 6))),
             'published_at' => $this->faker->date(),
             'year' => $this->faker->year,
             'plot' => $this->faker->text,

@@ -28,6 +28,7 @@
     },
     "dependencies": {
         "vue-feather-icons": "^5.1.0",
+        "vue-star-rating": "^1.7.0",
         "vue-toastify": "^1.8.0"
     }
 }

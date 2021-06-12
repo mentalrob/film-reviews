@@ -10,6 +10,10 @@ class Film extends Model
     use HasFactory;
     protected $guarded = [];
 
+    protected $appends = [
+        'review_point'
+    ];
+
     public function comment()
     {
         return $this->morphOne(Comment::class, 'commentable');
@@ -18,5 +22,11 @@ class Film extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function getReviewPointAttribute()
+    {
+        if ($this->reviews->count() === 0) return 0;
+        return ($this->reviews->sum('rate') / $this->reviews->count());
     }
 }

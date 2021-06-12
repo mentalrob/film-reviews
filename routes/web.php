@@ -19,12 +19,15 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', [FilmsController::class, 'index'])->name('home');
 Route::middleware(['auth:sanctum', 'verified', 'adminOnly'])->name("admin.")->prefix("admin")->group(function () {
     Route::get('/', DashboardController::class)->name("index");
     Route::resource('/films', FilmController::class);
     Route::resource('/users', UserController::class);
 });
+
+Route::get('/', [FilmsController::class, 'index'])->name('home');
+Route::middleware(['auth:sanctum', 'verified'])->get('/review/{film}', [FilmsController::class, 'review'])->name('film.review');
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
