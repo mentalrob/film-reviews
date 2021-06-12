@@ -23,7 +23,7 @@
                         </inertia-link>
                         <inertia-link
                             class="text-grey-800 text-xl mb-4 p-6 sm:px-10 rounded-lg border border-grey-500 shadow flex items-center justify-between"
-                            href="/"
+                            :href="route('admin.users.index')"
                         >
                             <span>Users</span>
                             <ChevronRightIcon />

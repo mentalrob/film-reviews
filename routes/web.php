@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FilmController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\FilmsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,7 @@ Route::get('/', [FilmsController::class, 'index'])->name('home');
 Route::middleware(['auth:sanctum', 'verified', 'adminOnly'])->name("admin.")->prefix("admin")->group(function () {
     Route::get('/', DashboardController::class)->name("index");
     Route::resource('/films', FilmController::class);
+    Route::resource('/users', UserController::class);
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
