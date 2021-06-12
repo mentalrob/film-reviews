@@ -57,10 +57,16 @@ class User extends Authenticatable
      */
     protected $appends = [
         'profile_photo_url',
+        'is_admin'
     ];
+
+    public function getIsAdminAttribute()
+    {
+        return $this->roles->contains('slug', 'admin');
+    }
 
     public function roles()
     {
-        return $this->belongsToMany(Role::class);
+        return $this->belongsToMany(Role::class, 'role_user');
     }
 }

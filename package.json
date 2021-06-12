@@ -27,6 +27,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "vue-feather-icons": "^5.1.0"
+        "vue-feather-icons": "^5.1.0",
+        "vue-toastify": "^1.8.0"
     }
 }

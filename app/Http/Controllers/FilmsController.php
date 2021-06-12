@@ -11,6 +11,6 @@ class FilmsController extends Controller
     public function index()
     {
         $films = Film::with('reviews')->get();
-        return Inertia::render('Welcome', compact(("films")));
+        return Inertia::render('Welcome', compact("films"));
     }
 }

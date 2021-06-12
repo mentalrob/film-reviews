@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\FilmController;
 use App\Http\Controllers\FilmsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -18,9 +20,8 @@ use Inertia\Inertia;
 
 Route::get('/', [FilmsController::class, 'index'])->name('home');
 Route::middleware(['auth:sanctum', 'verified', 'adminOnly'])->name("admin.")->prefix("admin")->group(function () {
-    Route::get('/', function () {
-        return "admin";
-    });
+    Route::get('/', DashboardController::class)->name("index");
+    Route::resource('/films', FilmController::class);
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
