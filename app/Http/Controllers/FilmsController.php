@@ -42,7 +42,7 @@ class FilmsController extends Controller
     public function comment(Request $request, Film $film)
     {
         $film->comments()->create([
-            "body" => $request->comment,
+            "body" => $request->input('comment'),
             "user_id" => $request->user()->id
         ]);
         return redirect()->back();
