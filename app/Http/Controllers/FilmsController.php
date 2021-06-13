@@ -19,6 +19,7 @@ class FilmsController extends Controller
     public function review(Request $request, Film $film)
     {
         $film->load('reviews');
+        $film->load('comments.user');
         $review = Review::where("user_id", $request->user()->id)->where('film_id', $film->id)->first();
 
         $canReview = $review === null;

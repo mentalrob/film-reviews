@@ -20,10 +20,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="text-center py-2">1</td>
-                                    <td class="text-center py-2">Avengers</td>
-                                    <td class="text-center py-2">7.5</td>
+                                <tr v-for="review in reviews" :key="review.id">
+                                    <td class="text-center py-2">
+                                        {{ review.id }}
+                                    </td>
+                                    <td class="text-center py-2">
+                                        {{ review.film.title }}
+                                    </td>
+                                    <td class="text-center py-2">
+                                        {{ review.rate }}
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -38,6 +44,9 @@
 import AppLayout from "@/Layouts/AppLayout";
 
 export default {
+    props: {
+        reviews: Array
+    },
     components: {
         AppLayout
     }

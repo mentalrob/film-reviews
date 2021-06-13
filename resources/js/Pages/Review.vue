@@ -77,26 +77,25 @@
 
             <div class="p-6 sm:px-20 container flex flex-col">
                 <div
-                    class="rounded-lg border border-grey-800 shadow p-4 flex"
+                    class="rounded-lg border border-grey-800 shadow p-4 flex my-4 relative"
                     v-for="comment in film.comments"
                     :key="comment.id"
                 >
                     <div class="flex flex-col">
                         <img
-                            class="w-8 h-8 rounded-full"
-                            src=""
-                            alt="user"
+                            class="w-8 h-8 rounded-full object-cover"
+                            :src="comment.user.profile_photo_url"
+                            :alt="comment.user.name"
                             srcset=""
                         />
-                        <span class="text-xs">Mentalrob</span>
+                        <span class="text-xs">{{ comment.user.name }}</span>
                     </div>
                     <p class="ml-5">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Minima et veniam magnam asperiores velit corporis fugiat
-                        adipisci totam illo alias deserunt ipsum sapiente
-                        consectetur recusandae architecto expedita, qui nobis
-                        amet?
+                        {{ comment.body }}
                     </p>
+                    <span class="text-sm absolute bottom-0 right-0 mr-2 mb-1">
+                        {{ Date(comment.created_at) }}
+                    </span>
                 </div>
             </div>
         </div>

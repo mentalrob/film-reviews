@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\User\Dashboard;
 use App\Http\Controllers\Admin\FilmController;
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\FilmsController;
 use Illuminate\Foundation\Application;
@@ -23,6 +26,8 @@ Route::middleware(['auth:sanctum', 'verified', 'adminOnly'])->name("admin.")->pr
     Route::get('/', DashboardController::class)->name("index");
     Route::resource('/films', FilmController::class);
     Route::resource('/users', UserController::class);
+    Route::resource('/reviews', ReviewController::class);
+    Route::resource('/comments', CommentController::class);
 });
 
 Route::get('/', [FilmsController::class, 'index'])->name('home');
@@ -33,6 +38,4 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 });
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', Dashboard::class)->name('dashboard');

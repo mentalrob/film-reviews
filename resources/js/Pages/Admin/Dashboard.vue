@@ -30,23 +30,16 @@
                         </inertia-link>
                         <inertia-link
                             class="text-grey-800 text-xl mb-4 p-6 sm:px-10 rounded-lg border border-grey-500 shadow flex items-center justify-between"
-                            href="/"
+                            :href="route('admin.reviews.index')"
                         >
                             <span>Reviews</span>
                             <ChevronRightIcon />
                         </inertia-link>
                         <inertia-link
                             class="text-grey-800 text-xl mb-4 p-6 sm:px-10 rounded-lg border border-grey-500 shadow flex items-center justify-between"
-                            href="/"
+                            :href="route('admin.comments.index')"
                         >
                             <span>Comments</span>
-                            <ChevronRightIcon />
-                        </inertia-link>
-                        <inertia-link
-                            class="text-grey-800 text-xl mb-4 p-6 sm:px-10 rounded-lg border border-grey-500 shadow flex items-center justify-between"
-                            href="/"
-                        >
-                            <span>Roles</span>
                             <ChevronRightIcon />
                         </inertia-link>
                     </div>
