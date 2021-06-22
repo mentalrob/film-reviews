@@ -20,6 +20,40 @@
 
                             <template #form>
                                 <div class="col-span-6 sm:col-span-4">
+                                    <jet-label
+                                        for="search-omdb"
+                                        value="Search OMDB"
+                                    />
+                                    <jet-input
+                                        id="title"
+                                        type="text"
+                                        class="mt-1 block w-full"
+                                        v-model="title"
+                                        autofocus
+                                    />
+                                    <jet-secondary-button
+                                        class="mt-2 mr-2"
+                                        type="button"
+                                        @click.native.prevent="searchOMDB"
+                                    >
+                                        Search OMDB
+                                    </jet-secondary-button>
+                                </div>
+                                <div
+                                    v-if="omdb.length > 0"
+                                    class="col-span-6 sm:col-span-4 flex flex-col"
+                                >
+                                    <button
+                                        class="text-grey-700 px-2 py-1 rounded-lg border shadow my-2"
+                                        href="#!"
+                                        v-for="film in omdb"
+                                        :key="film.imdbID"
+                                        @click.prevent="pick(film.imdbID)"
+                                    >
+                                        {{ film.Title }} - {{ film.Year }}
+                                    </button>
+                                </div>
+                                <div class="col-span-6 sm:col-span-4">
                                     <!-- Profile Photo File Input -->
                                     <input
                                         type="file"
@@ -215,6 +249,8 @@ import JetInputError from "@/Jetstream/InputError.vue";
 import JetActionMessage from "@/Jetstream/ActionMessage.vue";
 import Pagination from "@/Components/Pagination.vue";
 import { ChevronRightIcon } from "vue-feather-icons";
+import axios from "axios";
+import moment from "moment";
 export default {
     components: {
         AppLayout,
@@ -229,6 +265,12 @@ export default {
         JetSecondaryButton
     },
     methods: {
+        searchOMDB() {
+            console.log("searchomdb");
+            axios.get(`/api/omdb?title=${this.title}`).then(({ data }) => {
+                this.omdb = data.Search;
+            });
+        },
         selectNewPhoto() {
             this.$refs.poster.click();
         },
@@ -239,6 +281,21 @@ export default {
             };
             reader.readAsDataURL(this.$refs.poster.files[0]);
             this.createFilm.poster = this.$refs.poster.files[0];
+        },
+        pick(imdbId) {
+            axios.get(`/api/omdbId?id=${imdbId}`).then(({ data }) => {
+                this.createFilm.actors = data.Actors;
+                this.createFilm.director = data.Director;
+                this.createFilm.title = data.Title;
+                this.createFilm.poster = data.Poster;
+                this.createFilm.genre = data.Genre;
+                this.createFilm.writer = data.Writer;
+                this.createFilm.year = data.Year;
+                this.createFilm.plot = data.Plot;
+                this.createFilm.published_at = moment(data.DVD).format(
+                    "YYYY-MM-DD"
+                );
+            });
         },
         submit() {
             this.createFilm.post(route("admin.films.store"), {
@@ -255,6 +312,8 @@ export default {
     data() {
         return {
             preview: null,
+            title: "",
+            omdb: [],
             createFilm: this.$inertia.form({
                 poster: "",
                 title: "",

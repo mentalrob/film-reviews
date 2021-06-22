@@ -28,4 +28,18 @@ class FilmController extends Controller
 
         return $response->json();
     }
+
+    public function omdbQueryId(Request $request)
+    {
+        $data = $request->validate([
+            "id" => "required|string"
+        ]);
+
+        $response = Http::get("https://www.omdbapi.com/", [
+            "apikey" => env("OMDB_KEY"),
+            "i" => $data["id"],
+        ]);
+
+        return $response->json();
+    }
 }

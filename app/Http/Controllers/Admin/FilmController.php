@@ -40,7 +40,7 @@ class FilmController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            "poster" => "required|file",
+            "poster" => "required",
             "title" => "required|string",
             "writer" => "required|string",
             "actors" => "required|string",
@@ -58,6 +58,8 @@ class FilmController extends Controller
                 uniqid() . $file->getClientOriginalExtension()
             );
             $data['poster'] = Storage::disk('public')->url($path);
+        } else if ($request->has('poster')) {
+            $data['poster'] = $request->input('poster');
         }
         Film::create($data);
         return redirect()->back()

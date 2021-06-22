@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/films', [FilmController::class, 'index']);
 Route::get('/omdb', [FilmController::class, 'omdbQuery']);
+Route::get('/omdbId', [FilmController::class, 'omdbQueryId']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
