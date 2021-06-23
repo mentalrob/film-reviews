@@ -1,13 +1,13 @@
 <template>
     <div class="text-grey-700">
         <toolbar />
-        <div class="container p-6">
+        <div class="p-6">
             <h1 class="text-xl font-semibold tracking-normal">
                 Review {{ film.title }}
             </h1>
-            <div class="flex flex-wrap my-4">
-                <img :src="film.poster" alt="" />
-                <div class="ml-8">
+            <div class="flex justify-between my-4">
+                <img class="rounded-lg shadow" :src="film.poster" alt="" />
+                <div>
                     <table>
                         <tbody>
                             <tr>
